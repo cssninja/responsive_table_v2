@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- / / / / / / / HEAD -->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+<link type="text/css" media="all" rel="stylesheet" href="https://peakdentalstore.com/mm5/json.mvc?Store_Code=PEAK&amp;Function=CSSCombinedResource_Output&amp;CSSCombinedResource_Code=stylesheet&T=4f0a39f7" data-resource-group="css_list" data-resource-code="stylesheet" />
+  
+<style type="text/css">
+/* responsive tables thanks to: https://css-tricks.com/responsive-data-tables/, https://codepen.io/team/css-tricks/pen/wXgJww?editors=1100 */
+/* 
+Generic Styling, for Desktops/Laptops 
+*/
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+  
+  /* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data .. thanks to: https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-of-type
+	*/
+	.top:nth-of-type(1):before { content: "Order"; }
+	.top:nth-of-type(2):before { content: "Date"; }
+	.top:nth-of-type(3):before { content: "Total"; }
+	.top:nth-of-type(4):before { content: "Placed By"; }
+	.top:nth-of-type(5):before { content: "Office Name"; }
+	.top:nth-of-type(6):before { content: "Approval/Decline"; }
+	.top:nth-of-type(7):before { content: "Reason"; }
+	.top:nth-of-type(8):before { content: "Submit"; }
+  
+  .bottom:nth-of-type(1):before { content: ""; }
+  .bottom:nth-of-type(2):before { content: "Name"; }
+  .bottom:nth-of-type(3):before { content: "Quantity"; }
+  .bottom:nth-of-type(4):before { content: "Price"; }
+  .bottom:nth-of-type(5):before { content: "Total"; }
+  
+}
+  /* worked on second td (in tr class="tdgone") > table>tbody>tr>td:nth-of-type(2) .. table.newwidth:nth-child(1) tr:nth-child(2) .. table.newwidth tr:nth-child(2) td:nth-child(5) .. thanks to: https://stackoverflow.com/questions/17633959/need-to-select-second-tables-second-row-using-css-selectors > http://jsfiddle.net/JrRCe/ .. https://css-tricks.com/the-difference-between-nth-child-and-nth-of-type/ > https://css-tricks.com/examples/nth-child-tester/ .. https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child .. WORKED > tr.tdgone > td:nth-child(odd) */
+  @media (max-width: 760px) {
+    tr.tdgone > td:nth-child(odd) {
+      /* display: none !important; */
+      /* border: 10px solid #eee; */
+    }
+  }
+</style>
+
+</head>
+<!-- / HEAD -->
+
+<!-- / / / / / / / BODY -->
+<body id="js-&mvte:page:code;" class="o-site-wrapper t-page-&mvte:global:pageClass;">
+
+<!-- / / / / / / / NEW PARENT DIV -->
+<div class="newwidth">
+
+<!-- / / / / / / / TABLE -->
+<table class="c-table-responsive newwidth">
+
+    <!-- / / / VERY TOP ROW (WITH TITLES AS COLUMNS > table header > thead and th) -->
+	<thead class="c-table-responsive_thead" style="white-space: nowrap;">
+		<tr class="c-table-responsive__row u-bg-gray-30 u-color-white u-font-small u-text-bold u-text-uppercase">
+			<th class="c-table-responsive__cell" scope="col">Order #</th>
+			<th class="c-table-responsive__cell" scope="col">Date</th>
+			<th class="c-table-responsive__cell" scope="col">Total</th>
+			<th class="c-table-responsive__cell" scope="col">Placed By</th>
+			<th class="c-table-responsive__cell" scope="col">Office Name</th>
+			<th class="c-table-responsive__cell" scope="col">Approve/Decline</th>
+			<th class="c-table-responsive__cell" scope="col">Reason</th>
+			<th class="c-table-responsive__cell" scope="col"> Submit</th>
+		</tr>
+	</thead>
+	<!-- / VERY TOP ROW -->
+
+	<tbody>
+		
+		<!-- / / / MIDDLE ROWS (WITH DATA AS COLUMNS > TD's) -->
+		<tr class="c-table-responsive__row">
+			<form method="post" action="&mvte:urls:AACK:secure;">
+
+	    <!-- ID -->
+			<td class="c-table-responsive__cell c-table-responsive__cell--flex top" >&mvt:order:id;<input type="hidden" name="orderNbr" value="&mvt:order:id;"</td>
+
+			<!-- DATE -->
+			<td class="c-table-responsive__cell c-table-responsive__cell--flex top" >&mvt:global:formatted_date;</td>
+
+			<!-- TOTAL -->
+			<td class="c-table-responsive__cell c-table-responsive__cell--flex top" >&mvt:order:formatted_total;</td>
+
+			<!-- PLACED BY -->
+			<td class="c-table-responsive__cell c-table-responsive__cell--flex top" style="white-space: nowrap;">&mvt:order:ship_fname; &mvt:order:ship_lname;</td>
+
+			<!-- OFFICE NAME -->
+			<td class="c-table-responsive__cell c-table-responsive__cell--flex u-text-uppercase top" style="white-space: nowrap;">&mvt:global:formatted_office;</td>
+			
+			<!-- APPROVE/DECLINE -->
+			<td class="c-table-responsive__cell c-table-responsive__cell--flex top">			
+				<li class="c-form-list__item o-layout__item">
+					<label class="c-form-checkbox c-form-checkbox--radio">
+						<input class="c-form-checkbox__input" type="radio" name="approve" value="Approve">
+						<span class="c-form-checkbox__caption">Approve</span>
+					</label>
+					<label class="c-form-checkbox c-form-checkbox--radio">
+						<input type="radio" class="c-form-checkbox__input" name="approve" value="Decline">
+						<span class="c-form-checkbox__caption">Decline</span>
+					</label>
+				</li>
+			</td>
+
+			<!-- REASON -->
+			<td class="c-table-responsive__cell c-table-responsive__cell--flex top">
+				<mvt:comment><label class="c-form-label" for="reasonMessage">Reason</label></mvt:comment>
+				<textarea id="reasonMessage" name="reasonMessage" class="c-form-input c-form-input--long" style="width: 300px; height: 60px;" placeholder="Type your reason here..."></textarea>
+			</td>
+
+			<!-- SUBMIT -->
+			<td class="c-table-responsive__cell c-table-responsive__cell--flex top">
+				<input class="c-button c-button--huge u-bg-gray-50 u-font-small u-text-medium u-text-uppercase" type="submit" value="Submit">
+			</td>
+
+			</form>
+		</tr>
+		<!-- / MIDDLE ROWS -->
+
+	  <!-- / / / VERY BOTTOM ROW PER ORDER -->
+		<tr class="tdgone">
+      <!-- <td></td> -->
+			<td colspan="8">
+				<table class="c-table-responsive">
+					<tbody>
+						<tr class="c-table-responsive__row">
+							<td class="c-table-responsive__cell c-table-responsive__cell--flex bottom" style="font-weight:bold;">&nbsp;&nbsp;Item:</td>
+							<td class="c-table-responsive__cell c-table-responsive__cell--flex bottom">&mvt:item:name</td>
+							<td class="c-table-responsive__cell c-table-responsive__cell--flex bottom">Qty: &mvt:item:quantity</td>
+							<td class="c-table-responsive__cell c-table-responsive__cell--flex bottom">Price: $&mvt:item:price</td>
+							<td class="c-table-responsive__cell c-table-responsive__cell--flex bottom">Total: $&mvt:item:total</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>	
+    
+	</tbody>
+
+</table>
+<!-- / TABLE -->
+
+</div>
+<!-- / NEW PARENT DIV -->
+
+</body>
+<!-- / BODY -->
+</html>
